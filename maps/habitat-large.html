@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wildlife Habitat Suitability — Sieracki Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Sieracki Consulting</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../maps.html" class="active">GIS Maps</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+  <div class="map-detail-header">
+    <div class="container">
+      <a href="../maps.html" class="back-link">&#8592; Back to All Maps</a>
+      <h1 class="page-title">Wildlife Habitat Suitability</h1>
+      <p class="page-sub">Weighted overlay model combining canopy cover, elevation, distance to water, and land cover to produce a habitat suitability index.</p>
+    </div>
+  </div>
+  <section class="map-detail-section">
+    <div class="container">
+      <div class="large-map-wrap">
+        <!-- Replace with: <img src="../images/your-map.jpg" alt="Wildlife Habitat Suitability"> -->
+        <div class="map-placeholder-large env-1">
+          <div class="placeholder-label-lg">Wildlife Habitat Suitability — Full View</div>
+          <div class="placeholder-tag">Replace this with your map image:<br><code>&lt;img src="../images/your-map.jpg" alt="..."&gt;</code></div>
+        </div>
+      </div>
+      <div class="map-detail-meta">
+        <div class="meta-grid">
+          <div class="meta-item"><span class="meta-label">Data Source</span><span class="meta-value">NLCD / NHD / 3DEP / NLCD Canopy</span></div>
+          <div class="meta-item"><span class="meta-label">Software</span><span class="meta-value">ArcGIS Pro</span></div>
+          <div class="meta-item"><span class="meta-label">Analysis Type</span><span class="meta-value">Suitability Modeling</span></div>
+          <div class="meta-item"><span class="meta-label">Region</span><span class="meta-value">Pacific Northwest</span></div>
+        </div>
+        <div class="map-detail-desc">
+          <h3>About This Map</h3>
+          <p>A weighted overlay model was constructed using four input rasters: land cover class (weight 35%), canopy cover percentage (weight 25%), distance to perennial streams (weight 25%), and slope class (weight 15%). Each raster was reclassified to a 1–9 suitability scale prior to overlay. The resulting habitat suitability index was validated against known occurrence records and used to identify priority conservation blocks.</p>
+          <div class="map-meta"><span class="tag">Habitat</span><span class="tag">Wildlife</span><span class="tag">Suitability Model</span><span class="tag">Weighted Overlay</span></div>
+        </div>
+      </div>
+      <div class="map-nav-links">
+        <a href="floodplain-large.html" class="btn btn-outline">&#8592; Floodplain Analysis</a>
+        <a href="soils-large.html" class="btn btn-primary">Next: Soils &amp; Geology &#8594;</a>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">Sieracki Consulting</span>
+      <span class="footer-copy">&copy; 2025 Sieracki Consulting. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../maps.html">GIS Maps</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="../main.js"></script>
+</body>
+</html>

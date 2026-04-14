@@ -1,37 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>About - My Simple GIS Site</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Sieracki Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>About This Site</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="map-examples.html">Map Examples</a>
-      <a href="about.html">About</a>
-    </nav>
-  </header>
 
-  <main>
-    <h2>What This Is</h2>
-    <p>
-      This is a simple, free GIS demo built with HTML, CSS, and Leaflet.
-      It uses OpenStreetMap tiles and runs as a static website—no server code needed.
-    </p>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Sieracki Consulting</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="maps.html">GIS Maps</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
 
-    <h2>Tech Used</h2>
-    <ul>
-      <li>HTML &amp; CSS</li>
-      <li>Leaflet (JavaScript mapping library)</li>
-      <li>OpenStreetMap (free basemap tiles)</li>
-    </ul>
-  </main>
+  <div class="page-header">
+    <div class="container">
+      <p class="section-label">Who We Are</p>
+      <h1 class="page-title">About Sieracki Consulting</h1>
+    </div>
+  </div>
 
-  <footer>
-    <p>&copy; 2026 My GIS Site</p>
+  <section class="about-section">
+    <div class="container about-grid">
+      <div class="about-text">
+        <h2>GIS Expertise Rooted in the Landscape</h2>
+        <p>Sieracki Consulting is an independent GIS and spatial research firm based in the Pacific Northwest. We combine technical GIS skills with a deep understanding of environmental and land use issues to produce analysis that is accurate, clear, and actionable.</p>
+        <p>Our work spans environmental research, land use analysis, terrain modeling, hydrologic analysis, and habitat mapping. We work with a range of clients including land managers, conservation organizations, engineering firms, and public agencies.</p>
+        <p>Every project begins with careful listening — understanding what decisions the map needs to support and what questions the data needs to answer. From there we design an analysis approach that gets to the right answer efficiently.</p>
+        <h2>Approach</h2>
+        <p>Good spatial analysis requires both technical precision and contextual understanding. We bring both. Our workflow integrates industry-standard GIS tools (Esri ArcGIS Pro, QGIS, Python/GeoPandas) with field knowledge and a commitment to delivering results that hold up to scrutiny.</p>
+        <p>We believe in transparent methodology — every deliverable comes with clear documentation of data sources, analytical methods, and limitations. You should be able to replicate or audit our work.</p>
+      </div>
+      <div class="about-sidebar">
+        <div class="skills-card">
+          <h3>Technical Skills</h3>
+          <ul class="skills-list">
+            <li>ArcGIS Pro &amp; ArcGIS Online</li>
+            <li>QGIS</li>
+            <li>Python (GeoPandas, Rasterio, Shapely)</li>
+            <li>Remote Sensing &amp; Image Classification</li>
+            <li>LiDAR Processing &amp; Analysis</li>
+            <li>Hydrologic Modeling</li>
+            <li>Spatial Statistics</li>
+            <li>Cartographic Design</li>
+            <li>SSURGO / NLCD / NHD Datasets</li>
+            <li>Google Earth Engine</li>
+          </ul>
+        </div>
+        <div class="skills-card">
+          <h3>Project Types</h3>
+          <ul class="skills-list">
+            <li>Environmental Impact Mapping</li>
+            <li>Land Use &amp; Land Cover Analysis</li>
+            <li>Watershed &amp; Hydrology Studies</li>
+            <li>Habitat Suitability Modeling</li>
+            <li>Terrain &amp; Slope Analysis</li>
+            <li>Vegetation &amp; NDVI Mapping</li>
+            <li>Change Detection Studies</li>
+            <li>Research Support &amp; Data Compilation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="values-section">
+    <div class="container">
+      <p class="section-label">Our Values</p>
+      <h2 class="section-title">How We Work</h2>
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="value-num">01</div>
+          <h4>Accuracy First</h4>
+          <p>We don't cut corners on methodology. Every analysis is validated against source data and reviewed for logical consistency before delivery.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">02</div>
+          <h4>Clear Communication</h4>
+          <p>Technical GIS work needs to communicate clearly to non-GIS audiences. Our maps and reports are designed to be understood, not just impressive.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">03</div>
+          <h4>Appropriate Scale</h4>
+          <p>We match the analysis to the question — not every project needs the same level of complexity. We tell you what's needed and what isn't.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">04</div>
+          <h4>Research Grounded</h4>
+          <p>Our spatial work is backed by current literature, peer-reviewed methods, and an understanding of how the landscape actually functions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="container contact-inner">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Have a project to discuss or a question about our services? Reach out — we typically respond within one business day.</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <a href="mailto:info@sierackiconsulting.com">info@sierackiconsulting.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Location</span>
+            <span>Pacific Northwest, USA</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Availability</span>
+            <span>Currently accepting new projects</span>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="project">Project Type</label>
+            <select id="project" name="project">
+              <option value="">Select a service...</option>
+              <option value="gis">GIS Mapping &amp; Analysis</option>
+              <option value="env">Environmental Research</option>
+              <option value="land">Land Use Analysis</option>
+              <option value="research">Spatial Research</option>
+              <option value="other">Other / Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-note" id="form-status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">Sieracki Consulting</span>
+      <span class="footer-copy">&copy; 2025 Sieracki Consulting. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="maps.html">GIS Maps</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
   </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>

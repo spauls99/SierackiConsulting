@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NDVI Vegetation Health — Sieracki Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Sieracki Consulting</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../maps.html" class="active">GIS Maps</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+  <div class="map-detail-header">
+    <div class="container">
+      <a href="../maps.html" class="back-link">&#8592; Back to All Maps</a>
+      <h1 class="page-title">NDVI Vegetation Health</h1>
+      <p class="page-sub">Normalized Difference Vegetation Index showing vegetation density and health across the study area from satellite imagery.</p>
+    </div>
+  </div>
+  <section class="map-detail-section">
+    <div class="container">
+      <div class="large-map-wrap">
+        <!-- Replace with: <img src="../images/your-map.jpg" alt="NDVI Vegetation Health"> -->
+        <div class="map-placeholder-large landcover-2">
+          <div class="placeholder-label-lg">NDVI Vegetation Health — Full View</div>
+          <div class="placeholder-tag">Replace this with your map image:<br><code>&lt;img src="../images/your-map.jpg" alt="..."&gt;</code></div>
+        </div>
+      </div>
+      <div class="map-detail-meta">
+        <div class="meta-grid">
+          <div class="meta-item"><span class="meta-label">Data Source</span><span class="meta-value">Sentinel-2 / Landsat 8</span></div>
+          <div class="meta-item"><span class="meta-label">Software</span><span class="meta-value">Python / Google Earth Engine</span></div>
+          <div class="meta-item"><span class="meta-label">Analysis Type</span><span class="meta-value">Vegetation Index</span></div>
+          <div class="meta-item"><span class="meta-label">Region</span><span class="meta-value">Pacific Northwest</span></div>
+        </div>
+        <div class="map-detail-desc">
+          <h3>About This Map</h3>
+          <p>NDVI was derived from near-infrared and red bands of Sentinel-2 imagery composited over the summer growing season to minimize cloud contamination. Values range from -1 to 1, with higher values indicating denser, healthier vegetation. The output was used to characterize vegetation productivity across a research watershed and identify areas of potential stress or disturbance.</p>
+          <div class="map-meta"><span class="tag">NDVI</span><span class="tag">Remote Sensing</span><span class="tag">Vegetation</span><span class="tag">Google Earth Engine</span></div>
+        </div>
+      </div>
+      <div class="map-nav-links">
+        <a href="landcover-large.html" class="btn btn-outline">&#8592; Land Cover Classification</a>
+        <a href="change-detection-large.html" class="btn btn-primary">Next: Change Detection &#8594;</a>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">Sieracki Consulting</span>
+      <span class="footer-copy">&copy; 2025 Sieracki Consulting. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../maps.html">GIS Maps</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="../main.js"></script>
+</body>
+</html>

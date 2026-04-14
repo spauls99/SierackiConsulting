@@ -1,30 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>My Simple GIS Site</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sieracki Consulting — GIS & Spatial Research</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>My Simple GIS Website</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="map-examples.html">Map Examples</a>
-      <a href="about.html">About</a>
-    </nav>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Sieracki Consulting</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="maps.html">GIS Maps</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Spatial Intelligence · Research · Analysis</p>
+      <h1>Mapping the<br>World Around Us</h1>
+      <p class="hero-sub">Sieracki Consulting delivers expert GIS analysis, environmental research, and land use mapping to help organizations understand and act on the landscapes that matter most.</p>
+      <div class="hero-actions">
+        <a href="maps.html" class="btn btn-primary">View GIS Work</a>
+        <a href="about.html" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">&#8595; Scroll</div>
   </header>
 
-  <main>
-    <h2>Welcome</h2>
-    <p>
-      This is a simple GIS demo site using free tools: Leaflet and OpenStreetMap.
-      Check out the map examples to see interactive web maps in action.
-    </p>
-  </main>
+  <section class="services">
+    <div class="container">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-title">Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">&#9679;</div>
+          <h3>GIS Mapping &amp; Analysis</h3>
+          <p>Custom spatial datasets, map production, and geographic analysis tailored to your project needs — from small parcels to regional scales.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#9679;</div>
+          <h3>Environmental Research</h3>
+          <p>Field-verified environmental assessments combined with remote sensing data to document habitat, vegetation, and ecological conditions.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#9679;</div>
+          <h3>Land Use Analysis</h3>
+          <p>Comprehensive land cover classification, change detection, and suitability modeling for planning, conservation, and development projects.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">&#9679;</div>
+          <h3>Spatial Research</h3>
+          <p>Data-driven research integrating multiple spatial layers — soils, hydrology, topography, and more — to answer complex geographic questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <p>&copy; 2026 My GIS Site</p>
+  <section class="highlight-strip">
+    <div class="container highlight-inner">
+      <div class="highlight-stat">
+        <span class="stat-num">15+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="highlight-divider"></div>
+      <div class="highlight-stat">
+        <span class="stat-num">100s</span>
+        <span class="stat-label">Projects Completed</span>
+      </div>
+      <div class="highlight-divider"></div>
+      <div class="highlight-stat">
+        <span class="stat-num">GIS</span>
+        <span class="stat-label">Certified Specialist</span>
+      </div>
+      <div class="highlight-divider"></div>
+      <div class="highlight-stat">
+        <span class="stat-num">PNW</span>
+        <span class="stat-label">Regional Focus</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-maps">
+    <div class="container">
+      <p class="section-label">Selected Work</p>
+      <h2 class="section-title">Recent GIS Projects</h2>
+      <p class="section-sub">A sample of spatial analysis and mapping work across environmental and land use disciplines.</p>
+      <div class="map-preview-grid">
+        <a href="maps.html" class="map-preview-card">
+          <div class="map-thumb thumb-terrain"></div>
+          <div class="map-card-info">
+            <h4>Terrain &amp; Elevation Analysis</h4>
+            <p>Hillshade and slope modeling from LiDAR data</p>
+          </div>
+        </a>
+        <a href="maps.html" class="map-preview-card">
+          <div class="map-thumb thumb-landcover"></div>
+          <div class="map-card-info">
+            <h4>Land Cover Classification</h4>
+            <p>Multi-spectral satellite imagery analysis</p>
+          </div>
+        </a>
+        <a href="maps.html" class="map-preview-card">
+          <div class="map-thumb thumb-hydro"></div>
+          <div class="map-card-info">
+            <h4>Watershed &amp; Hydrology</h4>
+            <p>Stream network delineation and flow modeling</p>
+          </div>
+        </a>
+      </div>
+      <div class="center-cta">
+        <a href="maps.html" class="btn btn-primary">See All GIS Examples</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container cta-inner">
+      <h2>Have a project in mind?</h2>
+      <p>Whether you need detailed spatial analysis, environmental mapping, or research support, let's talk about what GIS can do for your work.</p>
+      <a href="about.html#contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">Sieracki Consulting</span>
+      <span class="footer-copy">&copy; 2025 Sieracki Consulting. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="maps.html">GIS Maps</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
   </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>

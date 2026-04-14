@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIS Map Examples — Sieracki Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Sieracki Consulting</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="maps.html" class="active">GIS Maps</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <p class="section-label">Portfolio</p>
+      <h1 class="page-title">GIS Map Examples</h1>
+      <p class="page-sub">A selection of spatial analysis, mapping, and environmental research projects. Click any map to view a larger version.</p>
+    </div>
+  </div>
+
+  <section class="maps-section">
+    <div class="container">
+
+      <div class="map-category">
+        <h2 class="category-title">Terrain &amp; Topography</h2>
+        <p class="category-desc">Elevation modeling, hillshade analysis, and slope classification using LiDAR and DEM datasets.</p>
+        <div class="maps-grid">
+
+          <div class="map-item">
+            <a href="maps/terrain-hillshade-large.html" class="map-link" title="View larger map">
+              <div class="map-img-wrap">
+                <div class="map-placeholder terrain-1">
+                  <div class="placeholder-label">Hillshade &amp; Elevation — Sample Region</div>
+                  <div class="placeholder-tag">Replace with your map image</div>
+                </div>
+                <div class="map-overlay"><span>View Larger &#8599;</span></div>
+              </div>
+            </a>
+            <div class="map-caption">
+              <h4>LiDAR Hillshade Analysis</h4>
+              <p>1-meter resolution hillshade derived from aerial LiDAR. Used for terrain feature identification and slope hazard assessment.</p>
+              <div class="map-meta"><span class="tag">LiDAR</span><span class="tag">DEM</span><span class="tag">Terrain</span></div>
+            </div>
+          </div>
+
+          <div class="map-item">
+            <a href="maps/slope-classification-large.html" class="map-link" title="View larger map">
+              <div class="map-img-wrap">
+                <div class="map-placeholder terrain-2">
+                  <div class="placeholder-label">Slope Classification Map</div>
+                  <div class="placeholder-tag">Replace with your map image</div>
+                </div>
+                <div class="map-overlay"><span>View Larger &#8599;</span></div>
+              </div>
+            </a>
+            <div class="map-caption">
+              <h4>Slope Classification</h4>
+              <p>Classified slope raster showing percentage grades across the study area, informing erosion risk and development suitability.</p>
+              <div class="map-meta"><span class="tag">Slope</span><span class="tag">Risk Analysis</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="map-category">
+        <h2 class="category-title">Land Cover &amp; Vegetation</h2>
+        <p class="category-desc">Multi-spectral imagery classification, change detection, and vegetation mapping across landscapes.</p>
+        <div class="maps-grid">
+
+          <div class="map-item">
+            <a href="maps/landcover-large.html" class="map-link" title="View larger map">
+              <div class="map-img-wrap">
+                <div class="map-placeholder landcover-1">
+                  <div class="placeholder-label">Land Cover Classification</div>
+                  <div class="placeholder-tag">Replace with your map image</div>
+                </div>
+                <div class="map-overlay"><span>View Larger &#8599;</span></div>
+              </div>
+            </a>
+            <div class="map-caption">
+              <h4>Land Cover Classification</h4>
+              <p>Supervised classification of Sentinel-2 multispectral imagery identifying forest, shrub, wetland, agriculture, and developed land.</p>
+              <div class="map-meta"><span class="tag">Sentinel-2</span><span class="tag">Classification</span><span class="tag">NLCD</span></div>
+            </div>
+          </div>
+
+          <div class="map-item">
+            <a href="maps/vegetation-ndvi-large.html" class="map-link" title="View larger map">
+              <div class="map-img-wrap">
+                <div class="map-placeholder landcover-2">
+                  <div class="placeholder-label">NDVI Vegetation Index</div>
+                  <div class="placeholder-tag">Replace with your map image</div>
+                </div>
+                <div class="map-overlay"><span>View Larger &#8599;</span></div>
+              </div>
+            </a>
+            <div class="map-caption">
+              <h4>NDVI Vegetation Health</h4>
+              <p>Normalized Difference Vegetation Index (NDVI) derived from satellite imagery, showing vegetation density and health across the study area.</p>
+              <div class="map-meta"><span class="tag">NDVI</span><span class="tag">Remote Sensing</span><span class="tag">Vegetation</span></div>
+            </div>
+          </div>
+
+          <div class="map-item">
+            <a href="maps/change-detection-large.html" class="map-link" title="View larger map">
+              <div class="map-img-wrap">
+                <div class="map-placeholder landcover-3">
+                  <div class="placeholder-label">Change Detection 2010–2024</div>
+                  <div class="placeholder-tag">Replace with your map image</div>
+                </div>
+                <div class="map-overlay"><span>View Larger &#8599;</span></div>
+              </div>
+            </a>
+            <div class="map-caption">
+              <h4>Land Cover Change Detection</h4>
+              <p>Temporal comparison of classified imagery highlighting land use transitions over a 14-year period.</p>
+              <div class="map-meta"><span class="tag">Change Detection</span><span class="tag">Temporal</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="map-category">
+        <h2 class="category-title">Hydrology &amp; Watersheds</h2>
+        <p class="category-desc">Stream network analysis, watershed delineation, and hydrologic modeling.</p>
+        <div class="maps-grid">
+
+          <div class="map-item">
+            <a href="maps/watershed-large.html" class="map-link" title="View larger map">
+              <div class="map-img-wrap">
+                <div class="map-placeholder hydro-1">
+                  <div class="placeholder-label">Watershed Delineation</div>
+                  <div class="placeholder-tag">Replace with your map image</div>
+                </div>
+                <div class="map-overlay"><span>View Larger &#8599;</span></div>
+              </div>
+            </a>
+            <div class="map-caption">
+              <h4>Watershed Delineation</h4>
+              <p>Sub-watershed boundaries derived from flow direction and accumulation grids, with stream order classification using Strahler method.</p>
+              <div class="map-meta"><span class="tag">Hydrology</span><span class="tag">Watershed</span><span class="tag">Strahler</span></div>
+            </div>
+          </div>
+
+          <div class="map-item">
+            <a href="maps/floodplain-large.html" class="map-link" title="View larger map">
+              <div class="map-img-wrap">
+                <div class="map-placeholder hydro-2">
+                  <div class="placeholder-label">Floodplain &amp; Riparian Buffer</div>
+                  <div class="placeholder-tag">Replace with your map image</div>
+                </div>
+                <div class="map-overlay"><span>View Larger &#8599;</span></div>
+              </div>
+            </a>
+            <div class="map-caption">
+              <h4>Floodplain &amp; Riparian Analysis</h4>
+              <p>100-year floodplain extent mapped against riparian buffer zones and land ownership for a conservation planning project.</p>
+              <div class="map-meta"><span class="tag">Floodplain</span><span class="tag">Riparian</span><span class="tag">Conservation</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="map-category">
+        <h2 class="category-title">Environmental Research</h2>
+        <p class="category-desc">Spatial support for environmental studies, habitat mapping, and conservation planning.</p>
+        <div class="maps-grid">
+
+          <div class="map-item">
+            <a href="maps/habitat-large.html" class="map-link" title="View larger map">
+              <div class="map-img-wrap">
+                <div class="map-placeholder env-1">
+                  <div class="placeholder-label">Wildlife Habitat Suitability</div>
+                  <div class="placeholder-tag">Replace with your map image</div>
+                </div>
+                <div class="map-overlay"><span>View Larger &#8599;</span></div>
+              </div>
+            </a>
+            <div class="map-caption">
+              <h4>Wildlife Habitat Suitability</h4>
+              <p>Weighted overlay model combining canopy cover, elevation, distance to water, and land cover to produce a habitat suitability index.</p>
+              <div class="map-meta"><span class="tag">Habitat</span><span class="tag">Wildlife</span><span class="tag">Suitability Model</span></div>
+            </div>
+          </div>
+
+          <div class="map-item">
+            <a href="maps/soils-large.html" class="map-link" title="View larger map">
+              <div class="map-img-wrap">
+                <div class="map-placeholder env-2">
+                  <div class="placeholder-label">Soils &amp; Geology</div>
+                  <div class="placeholder-tag">Replace with your map image</div>
+                </div>
+                <div class="map-overlay"><span>View Larger &#8599;</span></div>
+              </div>
+            </a>
+            <div class="map-caption">
+              <h4>Soils &amp; Parent Material</h4>
+              <p>SSURGO soils data combined with bedrock geology to characterize soil-forming factors across a research watershed.</p>
+              <div class="map-meta"><span class="tag">SSURGO</span><span class="tag">Soils</span><span class="tag">Geology</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="maps-note">
+    <div class="container">
+      <p><strong>Note:</strong> Maps shown are representative examples. Actual project maps can be provided under NDA or upon request. To discuss a specific mapping need, <a href="about.html#contact">contact us</a>.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">Sieracki Consulting</span>
+      <span class="footer-copy">&copy; 2025 Sieracki Consulting. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="maps.html">GIS Maps</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

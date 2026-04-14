@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floodplain &amp; Riparian Analysis — Sieracki Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Sieracki Consulting</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../maps.html" class="active">GIS Maps</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+  <div class="map-detail-header">
+    <div class="container">
+      <a href="../maps.html" class="back-link">&#8592; Back to All Maps</a>
+      <h1 class="page-title">Floodplain &amp; Riparian Analysis</h1>
+      <p class="page-sub">100-year floodplain extent mapped against riparian buffer zones and land ownership for conservation planning.</p>
+    </div>
+  </div>
+  <section class="map-detail-section">
+    <div class="container">
+      <div class="large-map-wrap">
+        <!-- Replace with: <img src="../images/your-map.jpg" alt="Floodplain &amp; Riparian Analysis"> -->
+        <div class="map-placeholder-large hydro-2">
+          <div class="placeholder-label-lg">Floodplain &amp; Riparian Analysis — Full View</div>
+          <div class="placeholder-tag">Replace this with your map image:<br><code>&lt;img src="../images/your-map.jpg" alt="..."&gt;</code></div>
+        </div>
+      </div>
+      <div class="map-detail-meta">
+        <div class="meta-grid">
+          <div class="meta-item"><span class="meta-label">Data Source</span><span class="meta-value">FEMA FIRM / NHD / LiDAR</span></div>
+          <div class="meta-item"><span class="meta-label">Software</span><span class="meta-value">ArcGIS Pro</span></div>
+          <div class="meta-item"><span class="meta-label">Analysis Type</span><span class="meta-value">Floodplain / Riparian</span></div>
+          <div class="meta-item"><span class="meta-label">Region</span><span class="meta-value">Pacific Northwest</span></div>
+        </div>
+        <div class="map-detail-desc">
+          <h3>About This Map</h3>
+          <p>FEMA 100-year floodplain boundaries were intersected with riparian buffer polygons (50m and 100m) derived from the National Hydrography Dataset stream network. The analysis was overlaid with land ownership data to identify parcels with high conservation value — those containing floodplain and riparian habitat not currently under conservation easement. Results informed a conservation prioritization scoring model.</p>
+          <div class="map-meta"><span class="tag">Floodplain</span><span class="tag">Riparian</span><span class="tag">FEMA</span><span class="tag">Conservation</span></div>
+        </div>
+      </div>
+      <div class="map-nav-links">
+        <a href="watershed-large.html" class="btn btn-outline">&#8592; Watershed Delineation</a>
+        <a href="habitat-large.html" class="btn btn-primary">Next: Habitat Suitability &#8594;</a>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">Sieracki Consulting</span>
+      <span class="footer-copy">&copy; 2025 Sieracki Consulting. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../maps.html">GIS Maps</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="../main.js"></script>
+</body>
+</html>
