@@ -507,15 +507,42 @@ a:hover { color: var(--green-mid); }
   color: rgba(201, 184, 154, 0.8);
   font-weight: 300;
   max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 /* ---- MAPS PAGE ---- */
 .maps-section {
   padding: 5rem 0 2rem;
+  background: var(--tan-lightest);
+  display: flex;
+  justify-content: center;
+}
+
+.maps-container {
+  width: 100%;
+  max-width: 900px;
+  padding: 0 1rem;
+}
+
+.page-column {
+  max-width: 816px;
+  margin: 0 auto;
+  background: var(--white);
+  box-shadow: 0 0 30px rgba(62, 47, 28, 0.08);
+  padding: 2.5rem 1.5rem;
+  border-radius: 2px;
+}
+
+@media (min-width: 768px) {
+  .page-column {
+    padding: 3rem 2rem;
+  }
 }
 
 .map-category {
-  margin-bottom: 4.5rem;
+  margin-bottom: 3rem;
+  page-break-inside: avoid;
 }
 
 .category-title {
@@ -535,8 +562,14 @@ a:hover { color: var(--green-mid); }
 
 .maps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 680px) {
+  .maps-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .map-item {
@@ -556,8 +589,17 @@ a:hover { color: var(--green-mid); }
   overflow: hidden;
 }
 
+.map-img-wrap img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
 .map-placeholder {
-  height: 220px;
+  height: auto;
+  aspect-ratio: 3 / 4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -577,25 +619,17 @@ a:hover { color: var(--green-mid); }
 .env-2 { background: linear-gradient(135deg, #8a7040 0%, #b89060 50%, #6a8848 100%); }
 
 .placeholder-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.9);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-  margin-bottom: 0.5rem;
+  display: none;
 }
 
 .placeholder-tag {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.6);
-  border: 1px dashed rgba(255,255,255,0.4);
-  border-radius: 3px;
-  padding: 0.25rem 0.6rem;
+  display: none;
 }
 
 .map-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(42, 63, 34, 0);
+  background: rgba(42, 63, 34, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -611,13 +645,13 @@ a:hover { color: var(--green-mid); }
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(6px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.25s, transform 0.25s;
 }
 
 .map-item:hover .map-overlay {
-  background: rgba(42, 63, 34, 0.35);
+  background: rgba(42, 63, 34, 0.5);
 }
 
 .map-item:hover .map-overlay span {
@@ -678,6 +712,10 @@ a:hover { color: var(--green-mid); }
   background: var(--green-deep);
   padding: 5rem 0 2.5rem;
   margin-top: var(--nav-height);
+}
+
+.map-detail-header .page-sub {
+  color: var(--white);
 }
 
 .back-link {
