@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Sieracki Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Sieracki Consulting</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="maps.html">GIS Maps</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <p class="section-label">Who We Are</p>
+      <h1 class="page-title">About Sieracki Consulting</h1>
+    </div>
+  </div>
+
+  <section class="about-section">
+    <div class="container about-grid">
+      <div class="about-text">
+        <h2>GIS Expertise Rooted in the Landscape</h2>
+        <p>Sieracki Consulting is an independent GIS and spatial research practice based in the Pacific Northwest. I combine technical GIS skills with a deep understanding of environmental and land use issues to produce quality maps and defensible analysis that are accurate, clear, and actionable.</p>
+        <p>My work spans environmental research, land use analysis, terrain modeling, hydrologic analysis, photo documentation,and habitat mapping. I work with a range of clients including land managers, conservation organizations, and engineering firms.</p>
+        <p>Every project begins with careful listening ----- understanding what decisions the map needs to support and what questions the data needs to answer. From there I design an analysis approach that gets to the right answer efficiently.</p>
+        <h2>Approach</h2>
+        <p>Good spatial analysis requires both technical precision and contextual understanding. The workflow integrates industry-standard GIS tools with field knowledge and a commitment to delivering results that hold up to scrutiny.</p>
+        <p>I believe in transparent methodology — every deliverable comes with clear documentation of data sources, analytical methods, and limitations. You should be able to replicate or audit the work.</p>
+      </div>
+      <div class="about-sidebar">
+        <div class="skills-card">
+          <h3>Technical Skills</h3>
+          <ul class="skills-list">
+            <li>ArcGIS Pro &amp; ArcGIS Online (requires your company license)</li>
+            <li>QGIS</li>
+            <li>Python </li>
+            <li>Remote Sensing &amp; Image Classification</li>      
+            <li>Spatial Statistics</li>
+            <li>Cartographic Design</li>
+            <li>Photo Documentation</li>
+          </ul>
+        </div>
+        <div class="skills-card">
+          <h3>Project Types</h3>
+          <ul class="skills-list">
+            <li>Environmental Impact Mapping</li>
+            <li>Land Use &amp; Land Cover Analysis</li>           
+            <li>Habitat Suitability Modeling</li>   
+            <li>Change Detection Studies</li>
+            <li>Research Support &amp; Data Compilation</li>
+            <li>Image Georeferencing
+            <li>Image conversion to feature classes</li>
+          </ul>
+        </div>
+        <div class="skills-card">
+          <h3>Project Commenting</h3>
+          <p>I provide expert spatial analysis and mapping to support formal project comments at all levels of government review. Our commenting services cover:</p>
+          <ul class="skills-list">
+            <li><strong>Local Projects:</strong> Site plans, zoning changes, and development proposals requiring local permitting</li>
+            <li><strong>State Projects:</strong> Transportation improvements, water rights, and state environmental reviews</li>
+            <li><strong>NEPA Projects:</strong> Federal actions requiring Environmental Impact Statements (EIS) or Environmental Assessments (EA)</li>
+          </ul>
+          <p>Each comment submission includes detailed spatial analysis, data-driven recommendations, and clear visual documentation to strengthen your position in the regulatory process.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="values-section">
+    <div class="container">
+      <p class="section-label">Value Systems</p>
+      <h2 class="section-title">How I Work</h2>
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="value-num">01</div>
+          <h4>Accuracy First</h4>
+          <p>I do not cut corners on methodology. Every analysis is validated against source data and reviewed for logical consistency before delivery.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">02</div>
+          <h4>Clear Communication</h4>
+          <p>Technical GIS work needs to communicate clearly to non-GIS audiences. Created maps and reports are designed to be understood, not just impressive.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">03</div>
+          <h4>Appropriate Scale</h4>
+          <p>Matching the analysis to the question — not every project needs the same level of complexity. We tell you what's needed and what isn't.</p>
+        </div>
+        <div class="value-item">
+          <div class="value-num">04</div>
+          <h4>Research Grounded</h4>
+          <p>My spatial work is backed by current literature, peer-reviewed methods, and an understanding of how the landscape actually functions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="container contact-inner">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Have a project to discuss or a question about our services? Reach out — we typically respond within one business day.</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <a href="mailto:info@sierackiconsulting.com">info@sierackiconsulting.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Location</span>
+            <span>Pacific Northwest, USA</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Availability</span>
+            <span>Currently accepting new projects</span>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <label for="project">Project Type</label>
+            <select id="project" name="project">
+              <option value="">Select a service...</option>
+              <option value="gis">GIS Mapping &amp; Analysis</option>
+              <option value="env">Environmental Research</option>
+              <option value="land">Land Use Analysis</option>
+              <option value="research">Spatial Research</option>
+              <option value="other">Other / Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-note" id="form-status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">Sieracki Consulting</span>
+      <span class="footer-copy">&copy; 2025 Sieracki Consulting. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="maps.html">GIS Maps</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
