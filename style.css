@@ -589,14 +589,6 @@ a:hover { color: var(--green-mid); }
   overflow: hidden;
 }
 
-.map-img-wrap img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  display: block;
-}
-
 .map-placeholder {
   height: auto;
   aspect-ratio: 3 / 4;
@@ -712,10 +704,6 @@ a:hover { color: var(--green-mid); }
   background: var(--green-deep);
   padding: 5rem 0 2.5rem;
   margin-top: var(--nav-height);
-}
-
-.map-detail-header .page-sub {
-  color: var(--white);
 }
 
 .back-link {
