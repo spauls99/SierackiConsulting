@@ -16,7 +16,8 @@
   --brown-mid: #6b4f2f;
   --text-dark: #1e1a14;
   --text-mid: #4a3f2f;
-  --text-light: #7a6e5e;
+  <!----text-light: #7a6e5e;-->
+  --text-light: #ffffff;
   --white: #fffefb;
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Source Sans 3', 'Segoe UI', sans-serif;
