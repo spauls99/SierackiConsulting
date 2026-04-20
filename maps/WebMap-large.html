@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Map Example — Sieracki Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" src="https://js.arcgis.com/5.0/embeddable-components/"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Sieracki Consulting</a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../maps.html" class="active">GIS Maps</a></li>
+        <li><a href="../about.html">About</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+  <div class="map-detail-header">
+    <div class="container">
+      <a href="../maps.html" class="back-link" style="color: white;">&#8592; Back to All Maps</a>
+      <h1 class="page-title"> Wilderness and TES habitats in North Idaho and Vicinity</h1>
+      <p class="page-sub" style="color: white;">Web map showing potential existing wilderness areas, threatened and endangered species habitat, and NREPA in northern Idaho NE Washington and western Montana. I can create web maps for any region and subject matter. They must be hosted on your companpy or organization Arcgis website.</p>
+  <section class="map-detail-section">
+    <div class="container">
+      <div class="large-map-wrap">
+        <div class="large-map-wrap">
+          <!--test insert-->
+  <!--<div class="large-map-wrap">
+  <arcgis-embedded-map
+    style="height:650px;width:100%;"
+    item-id="a77ce737ab42473fbdac7000fe04cf6c"
+    theme="light"
+    center="-116.37719265023351,48.42050381546335"
+    scale="1155581.108577"
+    portal-url="https://prsi.maps.arcgis.com"
+    legend-enabled="false"
+    layer-list-enabled="true">
+  </arcgis-embedded-map>-->
+</div>
+  <!--I frame commented out, works-->
+          <iframe
+    src="https://prsi.maps.arcgis.com/apps/mapviewer/index.html?webmap=a77ce737ab42473fbdac7000fe04cf6c"
+    style="width:100%;height:700px;border:none;"
+    allowfullscreen>-->
+  </iframe>
+</div>
+      </div>
+      <div class="map-detail-meta">
+        <div class="meta-grid">
+          <div class="meta-item"><span class="meta-label">Data Source</span><span class="meta-value">Varies</span></div>
+          <div class="meta-item"><span class="meta-label">Analysis Type</span><span class="meta-value">Web Map Example</span></div>
+          <div class="meta-item"><span class="meta-label">Region</span><span class="meta-value">Pacific Northwest</span></div>
+        </div>
+        <div class="map-detail-desc">
+          <h3>About This Map</h3>
+          <p>GRIZZLY BEARS (Ursus arctos) a</p>
+          <div class="map-meta"><span class="tag">Habitat</span><span class="tag">Biogeography</span><span class="tag">TE&S Habitat</span><span class="tag">Web Map</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">Sieracki Consulting</span>
+      <span class="footer-copy">&copy; 2025 Sieracki Consulting. All rights reserved.</span>
+      <nav class="footer-nav">
+        <a href="../index.html">Home</a>
+        <a href="../maps.html">GIS Maps</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </footer>
+  <script src="../main.js"></script>
+</body>
+</html>
