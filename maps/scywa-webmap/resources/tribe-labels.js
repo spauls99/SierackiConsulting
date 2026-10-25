@@ -8,6 +8,7 @@
         {name: 'Kootenai Tribe', lonlat: [-116.38, 48.72]}    // near Bonners Ferry, ID
     ];
     var MAX_DIST = 25000;  // metres (EPSG:3857 units, close enough at this latitude for matching)
+    var LABEL_MAX_RES = 66.15;  // labels at 1:250,000 and closer, same as the other layers
 
     var aa = layersList.filter(function (lyr) {
         return /^SCYWA_ActionArea/.test(lyr.get('popuplayertitle') || '');
@@ -46,7 +47,8 @@
         source: source,
         zIndex: 900,
         interactive: false,
-        style: function (feature) {
+        style: function (feature, resolution) {
+            if (resolution > LABEL_MAX_RES) return null;
             return new ol.style.Style({
                 text: new ol.style.Text({
                     text: feature.get('label'),
