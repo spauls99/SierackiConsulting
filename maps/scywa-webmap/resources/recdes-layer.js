@@ -16,17 +16,24 @@
     var OTHER = {suffix: '', z: 0, labelColor: 'rgb(64,37,92)',
                  fill: 'rgba(106,61,154,0.3)', stroke: 'rgba(106,61,154,1)'};
 
+    // outline width: 2 px at 1:150,000 and closer (resolution <= 40), thinning to 0.75 px zoomed out
+    function strokeWidth(resolution) {
+        return Math.max(0.75, Math.min(2, 2 * 40 / resolution));
+    }
+
     var styles = {};
-    function styleFor(type) {
-        if (!styles[type]) {
-            var t = TYPES[type] || OTHER;
-            styles[type] = new ol.style.Style({
+    function styleFor(type, resolution) {
+        var t = TYPES[type] || OTHER;
+        var w = t.stroke ? strokeWidth(resolution).toFixed(2) : '0';
+        var key = type + '|' + w;
+        if (!styles[key]) {
+            styles[key] = new ol.style.Style({
                 zIndex: t.z,
-                stroke: t.stroke ? new ol.style.Stroke({color: t.stroke, width: 2}) : undefined,
+                stroke: t.stroke ? new ol.style.Stroke({color: t.stroke, width: +w}) : undefined,
                 fill: new ol.style.Fill({color: t.fill})
             });
         }
-        return styles[type];
+        return styles[key];
     }
 
     function labelFor(feature, resolution) {
@@ -61,7 +68,7 @@
         declutter: true,
         style: function (feature, resolution) {
             var label = labelFor(feature, resolution);
-            var fill = styleFor(feature.get('TYPE'));
+            var fill = styleFor(feature.get('TYPE'), resolution);
             return label ? [fill, label] : fill;
         },
         popuplayertitle: TITLE,
