@@ -7,7 +7,7 @@
     var LABEL_MAX_RES = 66.15;  // labels at 1:250,000 and closer, same as the other layers
 
     var fill = new ol.style.Style({
-        stroke: new ol.style.Stroke({color: 'rgba(' + COLOR.join(',') + ',1)', width: 2.5}),
+        stroke: new ol.style.Stroke({color: 'rgba(' + COLOR.join(',') + ',0.8)', width: 1}),
         fill: new ol.style.Fill({color: 'rgba(' + COLOR.join(',') + ',0.35)'})
     });
 
@@ -27,7 +27,7 @@
     }
 
     var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><rect x='1' y='1' width='12' height='12' " +
-              "fill='rgba(" + COLOR.join(',') + ",0.5)' stroke='rgb(" + COLOR.join(',') + ")' stroke-width='2'/></svg>";
+              "fill='rgba(" + COLOR.join(',') + ",0.5)' stroke='rgb(" + COLOR.join(',') + ")' stroke-width='1'/></svg>";
 
     var source = new ol.source.Vector({attributions: ' '});
     source.addFeatures(new ol.format.GeoJSON().readFeatures(json_wilderness,

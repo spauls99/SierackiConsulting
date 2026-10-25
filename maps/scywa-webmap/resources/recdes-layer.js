@@ -1,5 +1,5 @@
 // "Recommended Wilderness (RW)" layer for qgis2web OpenLayers exports (2026-10-25)
-// Recommended wilderness: transparent yellow, no outline. Research natural areas (forest-plan
+// Recommended wilderness: transparent salmon, no outline. Research natural areas (forest-plan
 // and established) are drawn on top in orange so those embedded in RW stay visible.
 // Data: recdes-data.js (built by make_recdes_data.py; fields NAME, TYPE, SOURCE, YEAR, GIS_ACRES).
 // Load after layers/layers.js and before resources/qgis2web.js (adds to layersList).
@@ -9,8 +9,8 @@
     var LABEL_MAX_RES = 66.15;  // labels at 1:250,000 and closer, same as the roadless layer
 
     var TYPES = {};
-    TYPES[RW] = {suffix: ' (RW)', z: 1, labelColor: 'rgb(120,100,0)',
-                 fill: 'rgba(255,230,0,0.35)', stroke: null};
+    TYPES[RW] = {suffix: ' (RW)', z: 1, labelColor: 'rgb(160,60,45)',
+                 fill: 'rgba(250,128,114,0.4)', stroke: null};  // transparent salmon
     TYPES[RNA] = {suffix: ' (RNA)', z: 2, labelColor: 'rgb(153,76,0)',
                   fill: 'rgba(255,127,0,0.45)', stroke: 'rgba(255,127,0,1)'};
     var OTHER = {suffix: '', z: 0, labelColor: 'rgb(64,37,92)',
