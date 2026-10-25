@@ -9,7 +9,8 @@
     };
     var OTHER = [106, 61, 154];
 
-    var TITLE = 'Recommended Wilderness';
+    var TITLE = 'Recommended Wilderness (RW)';
+    var SUFFIX = {'WILDERNESS - RECOMMENDED': ' (RW)', 'RESEARCH NATURAL AREA': ' (RNA)'};
     var LABEL_MAX_RES = 66.15;  // labels at 1:250,000 and closer, same as the roadless layer
 
     var styles = {};
@@ -30,10 +31,11 @@
         var c = COLORS[feature.get('REC_DES_AREA_TYPE')] || OTHER;
         return new ol.style.Style({
             text: new ol.style.Text({
-                text: name,
+                text: name + (SUFFIX[feature.get('REC_DES_AREA_TYPE')] || ''),
                 font: 'italic bold 14px Arial, sans-serif',
                 fill: new ol.style.Fill({color: 'rgb(' + c.map(function (v) { return Math.round(v * 0.6); }).join(',') + ')'}),
                 stroke: new ol.style.Stroke({color: 'rgba(255,255,255,0.9)', width: 3}),
+                offsetY: 30,  // below a roadless label (18 px text) at the same spot, so both survive declutter
                 overflow: true
             })
         });
