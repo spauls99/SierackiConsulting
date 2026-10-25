@@ -1,39 +1,44 @@
-// "Recommended Wilderness" layer for qgis2web OpenLayers exports (2026-10-25)
-// Also contains 5 research natural areas, shown in their own legend colour.
-// Data: recdes-data.js (49 selected USFS BdyPlan_LMP_RecommendedDesignatedArea polygons).
+// "Recommended Wilderness (RW)" layer for qgis2web OpenLayers exports (2026-10-25)
+// Recommended wilderness: transparent yellow, no outline. Research natural areas (forest-plan
+// and established) are drawn on top in orange so those embedded in RW stay visible.
+// Data: recdes-data.js (built by make_recdes_data.py; fields NAME, TYPE, SOURCE, YEAR, GIS_ACRES).
 // Load after layers/layers.js and before resources/qgis2web.js (adds to layersList).
 (function () {
-    var COLORS = {
-        'WILDERNESS - RECOMMENDED': [51, 160, 44],
-        'RESEARCH NATURAL AREA': [255, 127, 0]
-    };
-    var OTHER = [106, 61, 154];
-
+    var RW = 'WILDERNESS - RECOMMENDED', RNA = 'RESEARCH NATURAL AREA';
     var TITLE = 'Recommended Wilderness (RW)';
-    var SUFFIX = {'WILDERNESS - RECOMMENDED': ' (RW)', 'RESEARCH NATURAL AREA': ' (RNA)'};
     var LABEL_MAX_RES = 66.15;  // labels at 1:250,000 and closer, same as the roadless layer
+
+    var TYPES = {};
+    TYPES[RW] = {suffix: ' (RW)', z: 1, labelColor: 'rgb(120,100,0)',
+                 fill: 'rgba(255,230,0,0.35)', stroke: null};
+    TYPES[RNA] = {suffix: ' (RNA)', z: 2, labelColor: 'rgb(153,76,0)',
+                  fill: 'rgba(255,127,0,0.45)', stroke: 'rgba(255,127,0,1)'};
+    var OTHER = {suffix: '', z: 0, labelColor: 'rgb(64,37,92)',
+                 fill: 'rgba(106,61,154,0.3)', stroke: 'rgba(106,61,154,1)'};
 
     var styles = {};
     function styleFor(type) {
         if (!styles[type]) {
-            var c = COLORS[type] || OTHER;
+            var t = TYPES[type] || OTHER;
             styles[type] = new ol.style.Style({
-                stroke: new ol.style.Stroke({color: 'rgba(' + c.join(',') + ',1)', width: 2}),
-                fill: new ol.style.Fill({color: 'rgba(' + c.join(',') + ',0.25)'})
+                zIndex: t.z,
+                stroke: t.stroke ? new ol.style.Stroke({color: t.stroke, width: 2}) : undefined,
+                fill: new ol.style.Fill({color: t.fill})
             });
         }
         return styles[type];
     }
 
     function labelFor(feature, resolution) {
-        var name = feature.get('REC_DES_AREA_NAME');
+        var name = feature.get('NAME');
         if (!name || name === 'Not defined' || resolution > LABEL_MAX_RES) return null;
-        var c = COLORS[feature.get('REC_DES_AREA_TYPE')] || OTHER;
+        var t = TYPES[feature.get('TYPE')] || OTHER;
         return new ol.style.Style({
+            zIndex: 10,
             text: new ol.style.Text({
-                text: name + (SUFFIX[feature.get('REC_DES_AREA_TYPE')] || ''),
+                text: name + t.suffix,
                 font: 'italic bold 14px Arial, sans-serif',
-                fill: new ol.style.Fill({color: 'rgb(' + c.map(function (v) { return Math.round(v * 0.6); }).join(',') + ')'}),
+                fill: new ol.style.Fill({color: t.labelColor}),
                 stroke: new ol.style.Stroke({color: 'rgba(255,255,255,0.9)', width: 3}),
                 offsetY: 30,  // below a roadless label (18 px text) at the same spot, so both survive declutter
                 overflow: true
@@ -41,9 +46,9 @@
         });
     }
 
-    function swatch(c) {
+    function swatch(t) {
         var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14'><rect x='1' y='1' width='12' height='12' " +
-                  "fill='rgba(" + c.join(',') + ",0.4)' stroke='rgb(" + c.join(',') + ")' stroke-width='2'/></svg>";
+                  "fill='" + t.fill + "' stroke='" + (t.stroke || 'none') + "' stroke-width='2'/></svg>";
         return '<img src="data:image/svg+xml,' + encodeURIComponent(svg) + '" />';
     }
 
@@ -56,22 +61,22 @@
         declutter: true,
         style: function (feature, resolution) {
             var label = labelFor(feature, resolution);
-            var fill = styleFor(feature.get('REC_DES_AREA_TYPE'));
+            var fill = styleFor(feature.get('TYPE'));
             return label ? [fill, label] : fill;
         },
         popuplayertitle: TITLE,
         interactive: true,
         title: TITLE + '<br />' +
-               swatch(COLORS['WILDERNESS - RECOMMENDED']) + ' Recommended wilderness<br />' +
-               swatch(COLORS['RESEARCH NATURAL AREA']) + ' Research natural area'
+               swatch(TYPES[RW]) + ' Recommended wilderness<br />' +
+               swatch(TYPES[RNA]) + ' Research natural area'
     });
-    layer.set('fieldAliases', {'REC_DES_AREA_NAME': 'Name', 'REC_DES_AREA_TYPE': 'Type', 'FOREST': 'Forest code',
-                               'PLAN_YEAR': 'Plan year', 'GIS_ACRES': 'GIS acres (USFS)'});
-    layer.set('fieldImages', {'REC_DES_AREA_NAME': 'TextEdit', 'REC_DES_AREA_TYPE': 'TextEdit', 'FOREST': 'TextEdit',
-                              'PLAN_YEAR': 'TextEdit', 'GIS_ACRES': 'TextEdit'});
-    layer.set('fieldLabels', {'REC_DES_AREA_NAME': 'header label - visible with data',
-                              'REC_DES_AREA_TYPE': 'inline label - always visible', 'FOREST': 'inline label - always visible',
-                              'PLAN_YEAR': 'inline label - always visible', 'GIS_ACRES': 'inline label - always visible'});
+    layer.set('fieldAliases', {'NAME': 'Name', 'TYPE': 'Type', 'SOURCE': 'Source', 'YEAR': 'Plan / established year',
+                               'GIS_ACRES': 'GIS acres (USFS)'});
+    layer.set('fieldImages', {'NAME': 'TextEdit', 'TYPE': 'TextEdit', 'SOURCE': 'TextEdit', 'YEAR': 'TextEdit',
+                              'GIS_ACRES': 'TextEdit'});
+    layer.set('fieldLabels', {'NAME': 'header label - visible with data', 'TYPE': 'inline label - always visible',
+                              'SOURCE': 'inline label - always visible', 'YEAR': 'inline label - always visible',
+                              'GIS_ACRES': 'inline label - always visible'});
 
     // draw just above the basemap, below the action area and roadless layers
     layersList.splice(1, 0, layer);
