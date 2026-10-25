@@ -1,26 +1,29 @@
-// Roadless-area picker for qgis2web OpenLayers exports (2026-10-24)
-// Lists every ROADLESSAR name; choosing one highlights all polygons with that
-// name and zooms to them. Load after resources/qgis2web.js (needs `map`).
+// Area pickers for qgis2web OpenLayers exports (2026-10-25)
+// Pulldowns of area names; choosing one highlights every polygon with that name and
+// zooms to them. Load after resources/qgis2web.js (needs `map` and `layersList`).
+//   1. Roadless areas (ROADLESSAR)
+//   2. Wilderness: designated Wilderness (W) and Recommended Wilderness (RW)
 (function () {
-    var FIELD = 'ROADLESSAR';
+    function findLayer(test) {
+        return layersList.filter(function (lyr) {
+            if (!(lyr instanceof ol.layer.Vector)) return false;
+            var f = lyr.getSource().getFeatures()[0];
+            return f && test(lyr, f);
+        })[0];
+    }
 
-    // find the vector layer whose features carry the name field
-    var layer = null;
-    map.getAllLayers().forEach(function (lyr) {
-        if (layer || !(lyr instanceof ol.layer.Vector)) return;
-        var f = lyr.getSource().getFeatures()[0];
-        if (f && f.get(FIELD) !== undefined) layer = lyr;
-    });
-    if (!layer) return;
-    var source = layer.getSource();
-
-    // count polygons per name, sort names alphabetically
-    var counts = {};
-    source.getFeatures().forEach(function (f) {
-        var name = f.get(FIELD);
-        if (name !== null && name !== undefined) counts[name] = (counts[name] || 0) + 1;
-    });
-    var names = Object.keys(counts).sort(function (a, b) { return a.localeCompare(b); });
+    // groups: [{label, layer, field, filter, suffix}] -> one <select>
+    var PICKERS = [
+        {prompt: 'Zoom to roadless area…', groups: [
+            {layer: findLayer(function (l, f) { return f.get('ROADLESSAR') !== undefined; }),
+             field: 'ROADLESSAR', suffix: ''}]},
+        {prompt: 'Zoom to wilderness…', groups: [
+            {label: 'Wilderness (W)', field: 'AREANAME', suffix: ' (W)',
+             layer: findLayer(function (l) { return l.get('popuplayertitle') === 'Wilderness (W)'; })},
+            {label: 'Recommended Wilderness (RW)', field: 'NAME', suffix: ' (RW)',
+             filter: function (f) { return f.get('TYPE') === 'WILDERNESS - RECOMMENDED'; },
+             layer: findLayer(function (l) { return l.get('popuplayertitle') === 'Recommended Wilderness (RW)'; })}]}
+    ];
 
     // highlight layer drawn above everything else
     var highlight = new ol.layer.Vector({
@@ -34,35 +37,70 @@
     highlight.set('title', null);
     map.addLayer(highlight);
 
-    var select = document.createElement('select');
-    select.title = 'Zoom to roadless area';
-    var first = document.createElement('option');
-    first.value = '';
-    first.textContent = 'Zoom to roadless area…';
-    select.appendChild(first);
-    names.forEach(function (name) {
-        var opt = document.createElement('option');
-        opt.value = name;
-        opt.textContent = counts[name] > 1 ? name + ' (' + counts[name] + ' polygons)' : name;
-        select.appendChild(opt);
-    });
+    var selects = [];
 
-    select.addEventListener('change', function () {
-        highlight.getSource().clear();
-        if (!select.value) return;
-        var extent = ol.extent.createEmpty();
-        source.getFeatures().forEach(function (f) {
-            if (f.get(FIELD) !== select.value) return;
-            highlight.getSource().addFeature(f.clone());
-            ol.extent.extend(extent, f.getGeometry().getExtent());
+    function matches(group, name) {
+        return group.layer.getSource().getFeatures().filter(function (f) {
+            return f.get(group.field) === name && (!group.filter || group.filter(f));
         });
-        map.getView().fit(extent, {padding: [60, 60, 60, 60], maxZoom: 14, duration: 500});
-    });
+    }
+
+    function makeSelect(picker) {
+        var select = document.createElement('select');
+        select.title = picker.prompt;
+        var first = document.createElement('option');
+        first.value = '';
+        first.textContent = picker.prompt;
+        select.appendChild(first);
+
+        var groups = picker.groups.filter(function (g) { return g.layer; });
+        groups.forEach(function (group, gi) {
+            var counts = {};
+            group.layer.getSource().getFeatures().forEach(function (f) {
+                var name = f.get(group.field);
+                if (name && name !== 'Not defined' && (!group.filter || group.filter(f))) counts[name] = (counts[name] || 0) + 1;
+            });
+            var parent = select;
+            if (group.label) {
+                parent = document.createElement('optgroup');
+                parent.label = group.label;
+                select.appendChild(parent);
+            }
+            Object.keys(counts).sort(function (a, b) { return a.localeCompare(b); }).forEach(function (name) {
+                var opt = document.createElement('option');
+                opt.value = gi + '|' + name;
+                opt.textContent = name.replace(/ Wilderness$/, '') + group.suffix +
+                    (counts[name] > 1 ? ' (' + counts[name] + ' polygons)' : '');
+                parent.appendChild(opt);
+            });
+        });
+
+        select.addEventListener('change', function () {
+            selects.forEach(function (s) { if (s !== select) s.value = ''; });
+            highlight.getSource().clear();
+            if (!select.value) return;
+            var i = select.value.indexOf('|');
+            var group = groups[+select.value.slice(0, i)];
+            var extent = ol.extent.createEmpty();
+            matches(group, select.value.slice(i + 1)).forEach(function (f) {
+                highlight.getSource().addFeature(f.clone());
+                ol.extent.extend(extent, f.getGeometry().getExtent());
+            });
+            map.getView().fit(extent, {padding: [60, 60, 60, 60], maxZoom: 14, duration: 500});
+        });
+        return select;
+    }
 
     var element = document.createElement('div');
     element.className = 'roadless-zoom ol-unselectable ol-control';
-    element.style.cssText = 'top: 8px; left: 50%; transform: translateX(-50%); padding: 2px;';
-    select.style.cssText = 'font: 14px Arial, sans-serif; max-width: 70vw; padding: 3px;';
-    element.appendChild(select);
+    element.style.cssText = 'top: 8px; left: 50%; transform: translateX(-50%); padding: 2px; ' +
+                            'display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; max-width: 80vw;';
+    PICKERS.forEach(function (picker) {
+        if (!picker.groups.some(function (g) { return g.layer; })) return;
+        var select = makeSelect(picker);
+        select.style.cssText = 'font: 14px Arial, sans-serif; max-width: 38vw; padding: 3px;';
+        selects.push(select);
+        element.appendChild(select);
+    });
     map.addControl(new ol.control.Control({element: element}));
 })();
