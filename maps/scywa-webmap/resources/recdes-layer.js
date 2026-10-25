@@ -1,4 +1,5 @@
-// Recommended/designated areas layer for qgis2web OpenLayers exports (2026-10-25)
+// "Recommended Wilderness" layer for qgis2web OpenLayers exports (2026-10-25)
+// Also contains 5 research natural areas, shown in their own legend colour.
 // Data: recdes-data.js (49 selected USFS BdyPlan_LMP_RecommendedDesignatedArea polygons).
 // Load after layers/layers.js and before resources/qgis2web.js (adds to layersList).
 (function () {
@@ -7,6 +8,9 @@
         'RESEARCH NATURAL AREA': [255, 127, 0]
     };
     var OTHER = [106, 61, 154];
+
+    var TITLE = 'Recommended Wilderness';
+    var LABEL_MAX_RES = 66.15;  // labels at 1:250,000 and closer, same as the roadless layer
 
     var styles = {};
     function styleFor(type) {
@@ -18,6 +22,21 @@
             });
         }
         return styles[type];
+    }
+
+    function labelFor(feature, resolution) {
+        var name = feature.get('REC_DES_AREA_NAME');
+        if (!name || name === 'Not defined' || resolution > LABEL_MAX_RES) return null;
+        var c = COLORS[feature.get('REC_DES_AREA_TYPE')] || OTHER;
+        return new ol.style.Style({
+            text: new ol.style.Text({
+                text: name,
+                font: 'italic bold 14px Arial, sans-serif',
+                fill: new ol.style.Fill({color: 'rgb(' + c.map(function (v) { return Math.round(v * 0.6); }).join(',') + ')'}),
+                stroke: new ol.style.Stroke({color: 'rgba(255,255,255,0.9)', width: 3}),
+                overflow: true
+            })
+        });
     }
 
     function swatch(c) {
@@ -32,10 +51,15 @@
 
     var layer = new ol.layer.Vector({
         source: source,
-        style: function (feature) { return styleFor(feature.get('REC_DES_AREA_TYPE')); },
-        popuplayertitle: 'Recommended / designated areas (forest plans)',
+        declutter: true,
+        style: function (feature, resolution) {
+            var label = labelFor(feature, resolution);
+            var fill = styleFor(feature.get('REC_DES_AREA_TYPE'));
+            return label ? [fill, label] : fill;
+        },
+        popuplayertitle: TITLE,
         interactive: true,
-        title: 'Recommended / designated areas (forest plans)<br />' +
+        title: TITLE + '<br />' +
                swatch(COLORS['WILDERNESS - RECOMMENDED']) + ' Recommended wilderness<br />' +
                swatch(COLORS['RESEARCH NATURAL AREA']) + ' Research natural area'
     });
