@@ -91,14 +91,19 @@
         return select;
     }
 
+    // narrow centred box: title, then the pulldowns stacked
     var element = document.createElement('div');
     element.className = 'roadless-zoom ol-unselectable ol-control';
-    element.style.cssText = 'top: 8px; left: 50%; transform: translateX(-50%); padding: 2px; ' +
-                            'display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; max-width: 80vw;';
+    element.style.cssText = 'top: 8px; left: 50%; transform: translateX(-50%); padding: 4px 6px; ' +
+                            'display: flex; flex-direction: column; gap: 3px; width: 240px; max-width: 45vw;';
+    var title = document.createElement('div');
+    title.textContent = 'SCYWA Action Area';
+    title.style.cssText = 'font: bold 15px Arial, sans-serif; text-align: center; color: #222;';
+    element.appendChild(title);
     PICKERS.forEach(function (picker) {
         if (!picker.groups.some(function (g) { return g.layer; })) return;
         var select = makeSelect(picker);
-        select.style.cssText = 'font: 14px Arial, sans-serif; max-width: 38vw; padding: 3px;';
+        select.style.cssText = 'font: 13px Arial, sans-serif; width: 100%; padding: 2px;';
         selects.push(select);
         element.appendChild(select);
     });
