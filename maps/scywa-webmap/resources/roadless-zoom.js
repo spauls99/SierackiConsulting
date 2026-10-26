@@ -17,7 +17,7 @@
         {prompt: 'Zoom to roadless area…', groups: [
             {layer: findLayer(function (l, f) { return f.get('ROADLESSAR') !== undefined; }),
              field: 'ROADLESSAR', suffix: ''}]},
-        {prompt: 'Zoom to wilderness…', groups: [
+        {prompt: 'Zoom to wilderness and WSAs…', groups: [
             {label: 'Wilderness (W)', field: 'AREANAME', suffix: ' (W)',
              layer: findLayer(function (l) { return l.get('popuplayertitle') === 'Wilderness (W)'; })},
             {label: 'Recommended Wilderness (RW)', field: 'NAME', suffix: ' (RW)',
@@ -109,5 +109,18 @@
         selects.push(select);
         element.appendChild(select);
     });
+
+    // clear the highlighted selection and reset both pulldowns (the map stays where it is)
+    var clear = document.createElement('button');
+    clear.type = 'button';
+    clear.textContent = 'Clear selection';
+    clear.title = 'Clear the highlighted area';
+    clear.style.cssText = 'font: 13px Arial, sans-serif; width: 100%; height: auto; margin: 0; padding: 3px; ' +
+                          'cursor: pointer; background: #f4f4f4; color: #222; border: 1px solid #999; border-radius: 3px;';
+    clear.addEventListener('click', function () {
+        selects.forEach(function (s) { s.value = ''; });
+        highlight.getSource().clear();
+    });
+    element.appendChild(clear);
     map.addControl(new ol.control.Control({element: element}));
 })();
