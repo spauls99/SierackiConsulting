@@ -2,7 +2,7 @@
 // Pulldowns of area names; choosing one highlights every polygon with that name and
 // zooms to them. Load after resources/qgis2web.js (needs `map` and `layersList`).
 //   1. Roadless areas (ROADLESSAR)
-//   2. Wilderness: designated Wilderness (W) and Recommended Wilderness (RW)
+//   2. Wilderness: designated Wilderness (W), Recommended Wilderness (RW), Wilderness Study Areas (WSA)
 (function () {
     function findLayer(test) {
         return layersList.filter(function (lyr) {
@@ -22,7 +22,9 @@
              layer: findLayer(function (l) { return l.get('popuplayertitle') === 'Wilderness (W)'; })},
             {label: 'Recommended Wilderness (RW)', field: 'NAME', suffix: ' (RW)',
              filter: function (f) { return f.get('TYPE') === 'WILDERNESS - RECOMMENDED'; },
-             layer: findLayer(function (l) { return l.get('popuplayertitle') === 'Recommended Wilderness (RW)'; })}]}
+             layer: findLayer(function (l) { return l.get('popuplayertitle') === 'Recommended Wilderness (RW)'; })},
+            {label: 'Wilderness Study Areas (WSA)', field: 'NAME', suffix: ' (WSA)',
+             layer: findLayer(function (l) { return l.get('popuplayertitle') === 'Wilderness Study Areas (WSA)'; })}]}
     ];
 
     // highlight layer drawn above everything else

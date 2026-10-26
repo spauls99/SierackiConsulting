@@ -1,10 +1,11 @@
 // Set the overlay order for qgis2web OpenLayers exports (2026-10-25)
 // Layer list (top to bottom): SCYWA action area, Wilderness (W), Recommended Wilderness (RW),
-// roadless areas; basemaps stay underneath. Drawing order follows the same order.
+// Wilderness Study Areas (WSA), roadless areas; basemaps stay underneath. Drawing order follows.
 // Load after the add-on layers and before resources/qgis2web.js (reorders layersList in place).
 (function () {
     var BOTTOM_TO_TOP = [
         /^bdy_Roadless/,
+        /^Wilderness Study Areas/,
         /^Recommended Wilderness/,
         /^Wilderness \(W\)/,
         /^SCYWA_ActionArea/
