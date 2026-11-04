@@ -80,6 +80,23 @@
         .ol-control > *:focus, .ol-control > *:hover { background-color: rgba(248,248,248,.7) !important; }
         .ol-attribution a { color: #444 !important; }
 
+        /* splash screen */
+        #splash { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.55); padding: 16px; box-sizing: border-box; }
+        #splash[hidden] { display: none; }
+        #splash .card { background: var(--header); color: #fff; max-width: 520px; width: 100%; max-height: 100%; overflow: auto; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,.5); padding: 22px 24px; box-sizing: border-box; border-top: 6px solid var(--select); }
+        #splash h2 { margin: 0 0 4px; font-size: 1.35rem; line-height: 1.25; }
+        #splash .sub { margin: 0 0 14px; color: #dcefd0; font-size: .9rem; }
+        #splash p { margin: 0 0 10px; font-size: .95rem; line-height: 1.45; }
+        #splash .hint { background: var(--rail); border-radius: 4px; padding: 10px 12px; margin: 12px 0; }
+        #splash .hint i { color: var(--select); width: 18px; text-align: center; }
+        #splash h3 { margin: 16px 0 6px; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--select); }
+        #splash .credit { border-bottom: 1px dashed rgba(255,255,255,.45); min-height: 1.4em; margin: 0 0 8px; font-size: .9rem; }
+        #splash .logos { display: flex; flex-wrap: wrap; gap: 10px; }
+        #splash .logo { flex: 1 1 100px; height: 64px; border: 1px dashed rgba(255,255,255,.55); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #cfe5c3; font-size: .8rem; }
+        #splash .logo img { max-width: 100%; max-height: 100%; }
+        #splash button { all: unset; cursor: pointer; display: block; margin: 18px auto 0; background: var(--select); color: var(--select-text); font-weight: 700; padding: 9px 26px; border-radius: 4px; }
+        #splash button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
         @media (max-width: 700px) {
             #rail { width: 46px; }
             #rail .lbl { display: none; }
@@ -89,17 +106,39 @@
         <title>SCYWA Selkirk Cabinet-Yaak Wildlands Alliance</title>
     </head>
     <body>
+        <div id="splash" role="dialog" aria-modal="true" aria-labelledby="splashTitle">
+            <div class="card">
+                <h2 id="splashTitle">Selkirk Cabinet-Yaak Wildlands Alliance</h2>
+                <p class="sub">SCYWA web map &middot; Draft</p>
+                <p>This map shows the SCYWA action area with inventoried roadless areas, designated and recommended wilderness, research natural areas and BLM wilderness study areas.</p>
+                <div class="hint">
+                    <p><i class="fas fa-list"></i> Click <strong>Legend</strong> on the left to see what the map symbols mean.</p>
+                    <p style="margin:0"><i class="fas fa-clone"></i> Use <strong>Layers</strong> to turn layers on or off, and click an area to see its details in <strong>Info</strong>.</p>
+                </div>
+                <h3>Credits</h3>
+                <p class="credit">Map prepared by Paul Sieracki, Sieracki Consulting, for SCYWA</p>
+                <p class="credit">&nbsp;</p>
+                <p class="credit">&nbsp;</p>
+                <h3>Partners</h3>
+                <div class="logos">
+                    <div class="logo">Logo</div>
+                    <div class="logo">Logo</div>
+                    <div class="logo">Logo</div>
+                </div>
+                <button id="splashClose">Enter map</button>
+            </div>
+        </div>
         <header id="topbar"><h1>SCYWA Selkirk Cabinet-Yaak Wildlands Alliance</h1></header>
         <div id="main">
             <nav id="rail" aria-label="Panels">
-                <button data-view="legend" aria-pressed="true"><span class="ico"><i class="fas fa-list"></i></span><span class="lbl">Legend</span></button>
+                <button data-view="legend" aria-pressed="false"><span class="ico"><i class="fas fa-list"></i></span><span class="lbl">Legend</span></button>
                 <button data-view="details" aria-pressed="false"><span class="ico"><i class="fas fa-info-circle"></i></span><span class="lbl">Details</span></button>
                 <button data-view="layers" aria-pressed="false"><span class="ico"><i class="fas fa-clone"></i></span><span class="lbl">Layers</span></button>
                 <button data-view="info" aria-pressed="false"><span class="ico"><i class="fas fa-mouse-pointer"></i></span><span class="lbl">Info</span></button>
                 <div class="spacer"></div>
                 <button id="collapse" aria-label="Collapse the icon rail"><span class="ico">&laquo;</span><span class="lbl">Collapse</span></button>
             </nav>
-            <aside id="panel">
+            <aside id="panel" hidden>
                 <div class="bar"><span id="panelTitle">Legend</span><button id="closePanel" aria-label="Close panel">&times;</button></div>
                 <div class="content">
                     <div id="legend" class="view active"></div>

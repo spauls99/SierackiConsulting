@@ -109,6 +109,16 @@
         }
     };
 
+    // splash screen: closes with the button, Escape or a click outside the card
+    var splash = document.getElementById('splash');
+    if (splash) {
+        var closeSplash = function () { splash.hidden = true; };
+        document.getElementById('splashClose').addEventListener('click', closeSplash);
+        splash.addEventListener('click', function (e) { if (e.target === splash) closeSplash(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !splash.hidden) closeSplash(); });
+        document.getElementById('splashClose').focus();
+    }
+
     buildLayers();
     buildLegend();
     resize();
