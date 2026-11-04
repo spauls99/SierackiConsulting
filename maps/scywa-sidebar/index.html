@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="./resources/ol.css?v=202611040630">
+        <link rel="stylesheet" href="resources/fontawesome-all.min.css?v=202611040630">
+        <link href="resources/photon-geocoder-autocomplete.min.css?v=202611040630" rel="stylesheet">
+        <link rel="stylesheet" href="./resources/ol-layerswitcher.css?v=202611040630">
+        <link rel="stylesheet" href="./resources/qgis2web.css?v=202611040630">
+        <style>
+        :root {
+            --header: #2e7d32;       /* header bar */
+            --rail: #1e4620;         /* icon rail */
+            --rail-hover: #2f6a31;
+            --select: #c6e377;       /* selected rail button */
+            --select-text: #10260f;
+            --panel: #000000;        /* side panel */
+            --panel-line: #2a2a2a;
+            --panel-text: #e8e8e8;
+            --panel-muted: #a8a8a8;
+        }
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; background: var(--panel); }
+        body { display: flex; flex-direction: column; font-family: "Avenir Next", "Segoe UI", Arial, sans-serif; }
+
+        #topbar { background: var(--header); color: #fff; padding: 10px 16px; flex: none; }
+        #topbar h1 { margin: 0; font-size: 1.15rem; font-weight: 600; line-height: 1.25; }
+
+        #main { flex: 1; display: flex; min-height: 0; position: relative; }
+
+        #rail { background: var(--rail); width: 96px; flex: none; display: flex; flex-direction: column; gap: 4px; padding: 6px; box-sizing: border-box; }
+        #rail button { all: unset; cursor: pointer; display: flex; align-items: center; gap: 7px; padding: 7px 8px; border-radius: 3px; color: #fff; font-size: .85rem; }
+        #rail button:hover { background: var(--rail-hover); }
+        #rail button[aria-pressed="true"] { background: var(--select); color: var(--select-text); font-weight: 600; }
+        #rail button:focus-visible { outline: 2px solid var(--select); outline-offset: 1px; }
+        #rail .ico { width: 16px; text-align: center; }
+        #rail .spacer { flex: 1; }
+        body.rail-collapsed #rail { width: 46px; }
+        body.rail-collapsed #rail .lbl { display: none; }
+
+        #panel { background: var(--panel); color: var(--panel-text); width: 300px; flex: none; display: flex; flex-direction: column; border-right: 1px solid var(--panel-line); min-height: 0; }
+        #panel[hidden] { display: none; }
+        #panel .bar { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--panel-line); font-weight: 600; }
+        #panel .bar button { all: unset; cursor: pointer; padding: 0 4px; font-size: 1.2rem; color: var(--panel-muted); }
+        #panel .content { overflow: auto; flex: 1; min-height: 0; }
+        #panel .view { display: none; }
+        #panel .view.active { display: block; }
+        #panel .empty { padding: 18px 16px; margin: 0; text-align: center; color: var(--panel-muted); font-weight: 600; }
+
+        .lg { padding: 10px 14px; border-bottom: 1px solid var(--panel-line); }
+        .lg h3 { margin: 0 0 6px; font-size: .9rem; font-weight: 600; }
+        .lg-row { display: flex; align-items: center; gap: 6px; font-size: .85rem; padding: 2px 0; }
+        .lg-row img { width: 16px; height: 16px; background: #fff; }
+
+        #details { padding: 14px 16px; font-size: .9rem; line-height: 1.45; }
+        #details p { margin: 0 0 10px; }
+        #details a { color: var(--select); }
+
+        .ly { padding: 9px 12px; border-bottom: 1px solid var(--panel-line); font-size: .88rem; }
+        .ly label { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; }
+        .ly input[type=checkbox] { accent-color: var(--select); margin-top: 2px; }
+        .ly em { color: var(--panel-muted); font-style: normal; font-size: .8rem; }
+        .ly .op { display: flex; align-items: center; gap: 8px; margin: 6px 0 0 22px; color: var(--panel-muted); font-size: .75rem; }
+        .ly .op input { flex: 1; accent-color: var(--select); }
+
+        #info-content ul { list-style: none; margin: 0; padding: 0; }
+        #info-content li { padding: 10px 14px; border-bottom: 1px solid var(--panel-line); }
+        #info-content a { color: var(--select); }
+        #info-content table { width: 100%; border-collapse: collapse; font-size: .82rem; color: var(--panel-text); }
+        #info-content td, #info-content th { padding: 3px 4px; vertical-align: top; text-align: left; border-bottom: 1px solid #1a1a1a; color: var(--panel-text) !important; }
+        #info-content th, #info-content td:first-child { color: var(--panel-muted) !important; font-weight: 400; }
+        #info-content strong, #info-content td strong { color: #fff !important; }
+
+        #map { flex: 1; min-width: 0; height: 100%; position: relative; background: #fff; }
+        .ol-control > * { background-color: #f8f8f8 !important; color: #444 !important; border-radius: 0; }
+        .ol-control { background-color: rgba(255,255,255,.4) !important; padding: 2px !important; }
+        .ol-control > *:focus, .ol-control > *:hover { background-color: rgba(248,248,248,.7) !important; }
+        .ol-attribution a { color: #444 !important; }
+
+        @media (max-width: 700px) {
+            #rail { width: 46px; }
+            #rail .lbl { display: none; }
+            #panel { position: absolute; top: 0; bottom: 0; left: 46px; width: calc(100% - 46px); max-width: 320px; z-index: 20; }
+        }
+        </style>
+        <title>SCYWA Selkirk Cabinet-Yaak Wildlands Alliance</title>
+    </head>
+    <body>
+        <header id="topbar"><h1>SCYWA Selkirk Cabinet-Yaak Wildlands Alliance</h1></header>
+        <div id="main">
+            <nav id="rail" aria-label="Panels">
+                <button data-view="legend" aria-pressed="true"><span class="ico"><i class="fas fa-list"></i></span><span class="lbl">Legend</span></button>
+                <button data-view="details" aria-pressed="false"><span class="ico"><i class="fas fa-info-circle"></i></span><span class="lbl">Details</span></button>
+                <button data-view="layers" aria-pressed="false"><span class="ico"><i class="fas fa-clone"></i></span><span class="lbl">Layers</span></button>
+                <button data-view="info" aria-pressed="false"><span class="ico"><i class="fas fa-mouse-pointer"></i></span><span class="lbl">Info</span></button>
+                <div class="spacer"></div>
+                <button id="collapse" aria-label="Collapse the icon rail"><span class="ico">&laquo;</span><span class="lbl">Collapse</span></button>
+            </nav>
+            <aside id="panel">
+                <div class="bar"><span id="panelTitle">Legend</span><button id="closePanel" aria-label="Close panel">&times;</button></div>
+                <div class="content">
+                    <div id="legend" class="view active"></div>
+                    <div id="details" class="view">
+                        <p><strong>DRAFT WEB MAP</strong></p>
+                        <p>Selkirk Cabinet-Yaak Wildlands Alliance (SCYWA) action area, inventoried roadless areas, designated Wilderness (W), Recommended Wilderness (RW) and research natural areas (RNA), and BLM Wilderness Study Areas (WSA).</p>
+                        <p>Use the pulldowns on the map to zoom to a roadless area or wilderness. Click an area to see its attributes in the Info panel.</p>
+                    </div>
+                    <div id="layers" class="view"></div>
+                    <div id="info" class="view"><div id="info-content"><p class="empty">Click on the map to view feature information</p></div></div>
+                </div>
+            </aside>
+            <div id="map">
+                <div id="popup" class="ol-popup">
+                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                    <div id="popup-content"></div>
+                </div>
+            </div>
+        </div>
+        <script src="resources/qgis2web_expressions.js?v=202611040630"></script>
+        <script src="./resources/functions.js?v=202611040630"></script>
+        <script src="./resources/ol.js?v=202611040630"></script>
+        <script src="./resources/ol-layerswitcher.js?v=202611040630"></script>
+        <script src="resources/photon-geocoder-autocomplete.min.js?v=202611040630"></script>
+        <script src="resources/olms.js?v=202611040630"></script>
+        <script src="layers/SCYWA_ActionArea_mod1024_1.js?v=202611040630"></script><script src="layers/bdy_RoadlessInSCYWA10242026_2.js?v=202611040630"></script>
+        <script src="styles/SCYWA_ActionArea_mod1024_1_style.js?v=202611040630"></script><script src="styles/bdy_RoadlessInSCYWA10242026_2_style.js?v=202611040630"></script>
+        <script src="./layers/layers.js?v=202611040630" type="text/javascript"></script>
+        <script src="./layers/recdes-data.js?v=202611040630"></script>
+        <script src="./resources/recdes-layer.js?v=202611040630"></script>
+        <script src="./layers/wilderness-data.js?v=202611040630"></script>
+        <script src="./resources/wilderness-layer.js?v=202611040630"></script>
+        <script src="./layers/wsa-data.js?v=202611040630"></script>
+        <script src="./resources/wsa-layer.js?v=202611040630"></script>
+        <script src="./resources/layer-order.js?v=202611040630"></script>
+        <script src="./resources/scywa-style.js?v=202611040630"></script>
+        <script src="./resources/Autolinker.min.js?v=202611040630"></script>
+        <script src="./resources/qgis2web.js?v=202611040630"></script>
+        <script src="./resources/initial-view.js?v=202611040630"></script>
+        <script src="./resources/tribe-labels.js?v=202611040630"></script>
+        <script src="./resources/roadless-zoom.js?v=202611040630"></script>
+        <script src="./resources/sidebar.js?v=202611040630"></script>
+    </body>
+</html>
