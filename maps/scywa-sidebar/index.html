@@ -79,18 +79,30 @@
         .ol-control { background-color: rgba(255,255,255,.4) !important; padding: 2px !important; }
         .ol-control > *:focus, .ol-control > *:hover { background-color: rgba(248,248,248,.7) !important; }
         .ol-attribution a { color: #444 !important; }
+        /* action area pulldowns: dark green with white text */
+        .ol-control.roadless-zoom { background-color: var(--rail) !important; padding: 6px 8px !important; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+        .ol-control.roadless-zoom > div { background: transparent !important; color: #fff !important; text-shadow: 0 0 3px #000, 0 0 2px #000; }
+        .ol-control.roadless-zoom > select,
+        .ol-control.roadless-zoom > button { background-color: var(--header) !important; color: #fff !important; border: 1px solid #5b9a5e !important; border-radius: 3px !important; }
+        .ol-control.roadless-zoom > select option,
+        .ol-control.roadless-zoom > select optgroup { background-color: var(--rail); color: #fff; }
+        .ol-control.roadless-zoom > button:hover,
+        .ol-control.roadless-zoom > select:hover { background-color: var(--rail-hover) !important; }
 
         /* splash screen */
         #splash { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.55); padding: 16px; box-sizing: border-box; }
         #splash[hidden] { display: none; }
-        #splash .card { background: var(--header); color: #fff; max-width: 520px; width: 100%; max-height: 100%; overflow: auto; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,.5); padding: 22px 24px; box-sizing: border-box; border-top: 6px solid var(--select); }
+        #splash .card { background: var(--rail); color: #fff; max-width: 520px; width: 100%; max-height: 100%; overflow: auto; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,.5); padding: 22px 24px; box-sizing: border-box; border-top: 6px solid var(--select); }
         #splash h2 { margin: 0 0 4px; font-size: 1.35rem; line-height: 1.25; }
         #splash .sub { margin: 0 0 14px; color: #dcefd0; font-size: .9rem; }
         #splash p { margin: 0 0 10px; font-size: .95rem; line-height: 1.45; }
-        #splash .hint { background: var(--rail); border-radius: 4px; padding: 10px 12px; margin: 12px 0; }
+        #splash .hint { background: var(--header); border-radius: 4px; padding: 10px 12px; margin: 12px 0; }
         #splash .hint i { color: var(--select); width: 18px; text-align: center; }
         #splash h3 { margin: 16px 0 6px; font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--select); }
-        #splash .credit { border-bottom: 1px dashed rgba(255,255,255,.45); min-height: 1.4em; margin: 0 0 8px; font-size: .9rem; }
+        #splash .credits { margin-top: 18px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,.25); }
+        #splash .credits h3 { margin-top: 0; }
+        #splash .credit { border-bottom: 1px dashed rgba(255,255,255,.35); min-height: 1.3em; margin: 0 0 6px; font-size: .82rem; color: #dcefd0; }
+        #splash .logo { background: var(--header); }
         #splash .logos { display: flex; flex-wrap: wrap; gap: 10px; }
         #splash .logo { flex: 1 1 100px; height: 64px; border: 1px dashed rgba(255,255,255,.55); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #cfe5c3; font-size: .8rem; }
         #splash .logo img { max-width: 100%; max-height: 100%; }
@@ -115,10 +127,6 @@
                     <p><i class="fas fa-list"></i> Click <strong>Legend</strong> on the left to see what the map symbols mean.</p>
                     <p style="margin:0"><i class="fas fa-clone"></i> Use <strong>Layers</strong> to turn layers on or off, and click an area to see its details in <strong>Info</strong>.</p>
                 </div>
-                <h3>Credits</h3>
-                <p class="credit">Map prepared by Paul Sieracki, Sieracki Consulting, for SCYWA</p>
-                <p class="credit">&nbsp;</p>
-                <p class="credit">&nbsp;</p>
                 <h3>Partners</h3>
                 <div class="logos">
                     <div class="logo">Logo</div>
@@ -126,6 +134,12 @@
                     <div class="logo">Logo</div>
                 </div>
                 <button id="splashClose">Enter map</button>
+                <div class="credits">
+                    <h3>Credits</h3>
+                    <p class="credit">Map prepared by Paul Sieracki, Sieracki Consulting, for SCYWA</p>
+                    <p class="credit">Funded by xxx</p>
+                    <p class="credit">&nbsp;</p>
+                </div>
             </div>
         </div>
         <header id="topbar"><h1>SCYWA Selkirk Cabinet-Yaak Wildlands Alliance</h1></header>
